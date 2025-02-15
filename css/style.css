@@ -4,96 +4,56 @@
     --bg-color: #f5f6fa;
     --text-color: #2c3e50;
     --card-bg: #ffffff;
+    --border-radius: 8px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* 基础布局 */
 body {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     font-family: 'Segoe UI', system-ui;
-    background: var(--bg-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
 }
 
 .header {
-    padding: 1rem;
-    background: var(--card-bg);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto 30px;
 }
 
-.search-container {
-    max-width: 800px;
-    margin: 0 auto;
+/* 搜索栏样式 */
+.search-bar {
     display: flex;
-    gap: 0.5rem;
+    gap: 10px;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
 }
 
 .search-input {
     flex: 1;
-    padding: 0.8rem;
-    border: 2px solid var(--secondary-color);
-    border-radius: 8px;
-    font-size: 1.1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
 }
 
-.search-btn {
-    padding: 0 1.2rem;
-    background: var(--secondary-color);
+.search-button {
+    padding: 0 20px;
     border: none;
-    border-radius: 8px;
+    background: var(--secondary-color);
     color: white;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
     cursor: pointer;
-    font-size: 1.2rem;
 }
 
 /* 分类区块布局 */
 .categories-container {
     max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    margin: 0 auto;
     display: grid;
-    gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-}
-
-.category-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.category-title {
-    margin: 0 0 1rem 0;
-    font-size: 1.3rem;
-    color: var(--primary-color);
-}
-
-.links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-}
-
-.link-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.8rem;
-    text-decoration: none;
-    color: var(--text-color);
-    border-radius: 8px;
-    transition: transform 0.2s;
-}
-
-.link-item:hover {
-    transform: translateY(-2px);
-    background: rgba(0,0,0,0.03);
-}
-
-.link-icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    gap: 20px;
 }
 
 /* 响应式设计 */
@@ -102,11 +62,7 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .search-container {
-        flex-direction: column;
-    }
-    
-    .search-btn {
-        padding: 0.8rem;
+    .search-input {
+        padding: 10px 15px;
     }
 } 
