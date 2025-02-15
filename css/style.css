@@ -1,0 +1,101 @@
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg-color, #f5f5f5);
+    color: var(--text-color, #333);
+    padding-top: 60px; /* 给固定搜索栏留出空间 */
+}
+
+/* 搜索栏样式 */
+.search-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    background: var(--header-bg, rgba(255,255,255,0.9));
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.search-input {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #4d90fe;
+    box-shadow: 0 0 0 2px rgba(77,144,254,0.2);
+}
+
+/* 分类区块样式 */
+.categories {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category {
+    margin-bottom: 2rem;
+}
+
+.category-title {
+    font-size: 1.2rem;
+    color: var(--category-title, #666);
+    margin-bottom: 1rem;
+    padding-left: 10px;
+    border-left: 4px solid #4d90fe;
+}
+
+/* 链接网格布局 */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    padding: 0 10px;
+}
+
+.link-item {
+    background: var(--link-bg, #fff);
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--link-text, #333);
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.link-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: var(--link-hover-bg, #f8f9fa);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .links-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-input {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+} 

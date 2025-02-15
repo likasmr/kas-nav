@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人导航站</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部搜索栏 -->
+    <header class="search-bar">
+        <input 
+            type="search" 
+            placeholder="搜索或输入网址..."
+            aria-label="网站搜索"
+            class="search-input">
+    </header>
+
+    <!-- 分类区块容器 -->
+    <main class="categories">
+        <!-- 示例分类 - 后续由JS动态生成 -->
+        <section class="category">
+            <h2 class="category-title">常用工具</h2>
+            <div class="links-grid">
+                <a href="https://github.com" class="link-item" target="_blank">
+                    GitHub
+                </a>
+                <a href="https://translate.google.com" class="link-item" target="_blank">
+                    Google翻译
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html> 
