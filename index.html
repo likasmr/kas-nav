@@ -1,47 +1,40 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>极简导航</title>
+    <title>极简导航站</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- 毛玻璃背景层 -->
-    <div class="blur-background"></div>
-    
-    <main class="container">
-        <!-- 搜索区 -->
-        <section class="search-container">
-            <div class="search-bar">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" 
-                       placeholder="搜索或输入网址..." 
-                       class="search-input"
-                       id="searchInput">
-                <div class="quick-actions">
-                    <button class="icon-btn" title="主题切换">
-                        <i class="fas fa-moon"></i>
-                    </button>
+    <div class="container">
+        <!-- 搜索栏 -->
+        <div class="search-bar">
+            <form id="searchForm" action="https://www.google.com/search" target="_blank">
+                <div class="search-container">
+                    <i class="search-icon fas fa-search"></i>
+                    <input type="text" name="q" id="searchInput" 
+                           placeholder="搜索或输入网址..." 
+                           autocomplete="off"
+                           data-search-engine="google">
+                    <div class="engine-switch">
+                        <i class="fab fa-google" data-engine="google"></i>
+                        <i class="fab fa-microsoft" data-engine="bing"></i>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </form>
+        </div>
 
-        <!-- 分类区块 -->
-        <section class="category-grid">
-            <!-- 示例分类 - 后续通过JS动态生成 -->
-            <article class="category-card">
-                <h2 class="category-title"><i class="fas fa-code"></i> 开发工具</h2>
-                <div class="link-container">
-                    <a href="https://github.com" class="link-item" target="_blank">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <!-- 更多链接... -->
-                </div>
-            </article>
-        </section>
-    </main>
+        <!-- 分类容器 -->
+        <div class="categories" id="categories"></div>
+    </div>
+
+    <!-- 主题切换按钮 -->
+    <button class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="js/app.js"></script>
 </body>
 </html> 
