@@ -50,7 +50,7 @@ searchEngines.forEach(engine => {
     });
 });
 
-// 辅助函数
+// URL 处理工具函数
 function isValidUrl(string) {
     try {
         new URL(string);
@@ -68,4 +68,7 @@ function ensureHttps(url) {
 }
 
 // 初始化
-initTheme(); 
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    // 后续可添加其他初始化功能
+}); 
