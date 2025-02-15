@@ -1,17 +1,8 @@
 :root {
     --primary-color: #4a90e2;
-    --background-color: #ffffff;
+    --background-color: #f5f5f5;
+    --card-background: #ffffff;
     --text-color: #333333;
-    --card-background: #f5f5f5;
-}
-
-/* 深色模式变量 */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background-color: #1a1a1a;
-        --text-color: #ffffff;
-        --card-background: #2d2d2d;
-    }
 }
 
 * {
@@ -26,62 +17,98 @@ body {
     color: var(--text-color);
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
 }
 
-/* 搜索栏样式 */
 .search-container {
-    margin-bottom: 30px;
-}
-
-.search-box {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     gap: 10px;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
-#searchInput {
+.search-input {
     flex: 1;
-    padding: 12px;
-    border: 2px solid var(--primary-color);
-    border-radius: 6px;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
     font-size: 16px;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    outline: none;
 }
 
-#searchButton {
-    padding: 12px 24px;
+.search-button {
+    padding: 10px 20px;
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 24px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-/* 分类区块样式 */
+.main-content {
+    margin-top: 84px;
+    padding: 20px;
+}
+
 .categories-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .search-box {
-        flex-direction: column;
-    }
-    
-    #searchButton {
-        width: 100%;
-    }
+.category {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.category-title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+}
+
+.link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.link-card:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.link-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+}
+
+.link-title {
+    font-size: 14px;
+    text-align: center;
 } 
