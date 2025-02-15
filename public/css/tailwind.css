@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义玻璃拟态效果 */
+.glass {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-200 dark:border-gray-700;
+}
+
+/* 网格背景 */
+.bg-grid-gray-100/50 {
+    background-image: linear-gradient(to right, rgba(243, 244, 246, 0.5) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(243, 244, 246, 0.5) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.dark .bg-grid-gray-800/5 {
+    background-image: linear-gradient(to right, rgba(31, 41, 55, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(31, 41, 55, 0.05) 1px, transparent 1px);
+}
+
+/* 平滑过渡 */
+* {
+    @apply transition-colors duration-200;
+} 
