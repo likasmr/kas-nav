@@ -148,12 +148,34 @@ body {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    border: none;
+    border: 2px solid rgba(0, 0, 0, 0.1);
     background: var(--primary-color);
     color: white;
     cursor: pointer;
-    box-shadow: var(--shadow);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
+}
+
+/* 暗色模式下的调整 */
+[data-theme="dark"] .theme-toggle {
+    background: #6a5b7a; /* 使用深紫色增强对比 */
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 图标颜色调整 */
+.theme-toggle i {
+    color: #4a4453; /* 深灰紫色 */
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .theme-toggle i {
+    color: #fff; /* 暗色模式保持白色 */
+}
+
+/* 悬停效果增强 */
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* 响应式设计 */
