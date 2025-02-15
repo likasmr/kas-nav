@@ -1,21 +1,43 @@
-// 主题切换功能
-const themeToggle = document.createElement('div');
-themeToggle.className = 'theme-toggle';
-themeToggle.innerHTML = `
-  <label>
-    <input type="checkbox" id="theme-switch">
-    <span class="slider"></span>
-  </label>
-`;
-document.body.appendChild(themeToggle);
+document.addEventListener('DOMContentLoaded', () => {
+    // 主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // 初始化主题
+    const currentTheme = localStorage.getItem('theme') || 
+                        (prefersDarkScheme.matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-const themeSwitch = document.getElementById('theme-switch');
-themeSwitch.addEventListener('change', function() {
-  document.body.setAttribute('data-theme', this.checked ? 'dark' : 'light');
-  localStorage.setItem('theme', this.checked ? 'dark' : 'light');
-});
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
 
-// 初始化主题
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.body.setAttribute('data-theme', savedTheme);
-themeSwitch.checked = savedTheme === 'dark'; 
+    // 搜索功能
+    const searchInput = document.getElementById('searchInput');
+    const searchEngines = document.querySelectorAll('.search-engine');
+
+    searchEngines.forEach(engine => {
+        engine.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            const engineType = engine.dataset.engine;
+            let searchUrl = '';
+
+            switch(engineType) {
+                case 'google':
+                    searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'bing':
+                    searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+            }
+
+            window.open(searchUrl, '_blank');
+        });
+    });
+}); 
