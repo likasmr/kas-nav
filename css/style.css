@@ -137,6 +137,7 @@ body {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
+    z-index: 1000;
 }
 
 #themeToggle {
@@ -149,13 +150,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
     transition: var(--transition);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #themeToggle:hover {
     transform: scale(1.1);
+    background: var(--primary-bg);
+}
+
+#themeToggle svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-primary);
+    transition: var(--transition);
+}
+
+[data-theme="dark"] #themeToggle .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] #themeToggle .moon-icon {
+    display: none;
 }
 
 /* 响应式设计 */
