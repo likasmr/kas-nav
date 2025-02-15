@@ -163,9 +163,6 @@ body {
     fill: var(--text-primary);
     transition: var(--transition);
     opacity: 0.7;
-    stroke: var(--text-primary);
-    stroke-width: 2;
-    stroke-linecap: round;
 }
 
 #themeToggle:hover svg {
@@ -178,14 +175,6 @@ body {
 
 [data-theme="light"] #themeToggle .moon-icon {
     display: none;
-}
-
-.sun-icon circle {
-    fill: var(--text-primary);
-}
-
-.sun-icon path {
-    fill: none;
 }
 
 /* 响应式设计 */
