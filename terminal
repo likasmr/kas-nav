@@ -1,0 +1,2 @@
+mkdir css js assets
+touch index.html css/style.css js/app.js 
