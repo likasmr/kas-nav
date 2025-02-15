@@ -162,11 +162,6 @@ body {
     height: 20px;
     fill: var(--text-primary);
     transition: var(--transition);
-    opacity: 0.7;
-}
-
-#themeToggle:hover svg {
-    opacity: 1;
 }
 
 [data-theme="dark"] #themeToggle .sun-icon {
