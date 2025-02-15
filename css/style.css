@@ -1,75 +1,29 @@
+/* 二次元风格设计系统 */
 :root {
-    --primary-color: #ff79c6; /* 粉色 */
-    --secondary-color: #bd93f9; /* 紫色 */
-    --bg-color: #1a1b26; 
-    --text-color: #c0caf5;
-    --card-bg: rgba(40, 42, 54, 0.8);
-    --border-radius: 15px;
-    --neon-glow: 0 0 10px var(--primary-color);
+  --primary-color: #FF69B4; /* 樱花粉 */
+  --secondary-color: #00BFFF; /* 电子蓝 */
+  --bg-image: url('../assets/bg/anime-city-night.jpg');
+  --font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-[data-theme="light"] {
-    --bg-color: #f0f0f0;
-    --text-color: #2a2a2a;
-    --card-bg: rgba(255, 255, 255, 0.9);
+/* 赛博朋克风格导航栏 */
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color);
 }
 
-/* 二次元风格头部 */
-.anime-header {
-    padding: 2rem;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    position: relative;
-    border-bottom: 2px solid var(--primary-color);
-}
-
-.search-box {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.neon-input {
-    width: 100%;
-    padding: 1rem 2rem;
-    border: 2px solid var(--primary-color);
-    border-radius: 50px;
-    background: var(--card-bg);
-    color: var(--text-color);
-    font-size: 1.2rem;
-    box-shadow: var(--neon-glow);
-    transition: all 0.3s ease;
-}
-
-/* 网格布局 */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* 分类卡片 */
+/* 分类卡片动效 */
 .category-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: transform 0.3s ease;
+  background: rgba(255,255,255,0.1) !important;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
 }
 
 .category-card:hover {
-    transform: translateY(-5px) scale(1.02);
-}
-
-/* 主题切换开关 */
-.theme-switch {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  transform: translateY(-5px) rotateZ(2deg);
+  background: linear-gradient(145deg, 
+    rgba(255,105,180,0.3), 
+    rgba(0,191,255,0.3)) !important;
 } 

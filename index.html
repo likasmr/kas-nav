@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>二次元导航站 ✨</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- 添加动漫风格字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- 动态樱花飘落效果容器 -->
-    <div id="sakura-container"></div>
+<body class="anime-theme">
+    <!-- 动态粒子背景 -->
+    <canvas id="particle-canvas"></canvas>
     
-    <header class="anime-header">
-        <div class="search-box">
-            <input type="text" placeholder="検索... Ctrl+K" class="neon-input">
-            <button class="mdi mdi-magnify"></button>
+    <!-- 赛博朋克风格导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="assets/icons/miku.png" alt="看板娘图标" class="mascot">
+            <h1>次元导航</h1>
         </div>
         <div class="theme-switch">
-            <label class="switch">
-                <input type="checkbox" id="themeToggle">
-                <span class="slider round"></span>
+            <input type="checkbox" id="theme-toggle">
+            <label for="theme-toggle" class="toggle-label">
+                <span class="moon">🌙</span>
+                <span class="sun">☀️</span>
             </label>
-            <span class="mdi mdi-weather-night"></span>
         </div>
-    </header>
-
-    <main class="grid-container">
-        <!-- 分类区块将通过JS动态生成 -->
-    </main>
-
-    <script src="js/app.js"></script>
-    <script src="js/sakura.js"></script>
+    </nav>
 </body>
 </html> 
