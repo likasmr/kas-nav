@@ -8,40 +8,22 @@
 </head>
 <body>
     <!-- 顶部搜索栏 -->
-    <header class="search-bar">
-        <div class="container">
-            <form id="searchForm">
-                <input type="search" 
-                       placeholder="搜索或输入网址..." 
-                       autocomplete="off"
-                       class="search-input">
-                <button type="submit" class="search-btn">🔍</button>
-            </form>
+    <header class="header">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="搜索或输入网址...">
+            <button class="search-btn">🔍</button>
         </div>
     </header>
 
     <!-- 分类区块容器 -->
-    <main class="container">
-        <section class="category">
-            <h2>常用工具</h2>
+    <main class="categories-container">
+        <!-- 示例分类 - 后续由JS动态生成 -->
+        <section class="category-card">
+            <h2 class="category-title">常用工具</h2>
             <div class="links-grid">
-                <a href="https://github.com" class="link-card" target="_blank">
-                    <span class="link-icon">⚙️</span>
-                    <div class="link-content">
-                        <h3 class="link-title">GitHub</h3>
-                        <p class="link-desc">代码托管平台</p>
-                    </div>
-                </a>
-                <!-- 更多链接... -->
-            </div>
-        </section>
-
-        <section class="category">
-            <h2>开发资源</h2>
-            <div class="links-grid">
-                <a href="https://stackoverflow.com" class="link-card" target="_blank">
-                    <span class="link-icon">📚</span>
-                    <span class="link-title">Stack Overflow</span>
+                <a href="https://github.com" class="link-item" target="_blank">
+                    <div class="link-icon">⭐</div>
+                    <span class="link-text">GitHub</span>
                 </a>
                 <!-- 更多链接... -->
             </div>
