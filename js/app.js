@@ -1,51 +1,71 @@
-// 主题切换
-const themeToggle = document.querySelector('.theme-toggle');
+// 主题切换功能
+const themeToggle = document.getElementById('themeToggle');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
 // 初始化主题
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-        document.body.dataset.theme = savedTheme;
+        document.documentElement.setAttribute('data-theme', savedTheme);
     } else if (prefersDarkScheme.matches) {
-        document.body.dataset.theme = 'dark';
+        document.documentElement.setAttribute('data-theme', 'dark');
     }
 }
 
+// 切换主题
 themeToggle.addEventListener('click', () => {
-    const currentTheme = document.body.dataset.theme;
+    const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.body.dataset.theme = newTheme;
+    document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
 });
 
 // 搜索功能
 const searchInput = document.getElementById('searchInput');
 const searchEngines = document.querySelectorAll('.search-engine');
-let currentEngine = 'google';
 
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         const query = searchInput.value.trim();
         if (query) {
-            let searchUrl;
-            if (currentEngine === 'google') {
-                searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            if (isValidUrl(query)) {
+                window.open(ensureHttps(query), '_blank');
             } else {
-                searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
             }
-            window.open(searchUrl, '_blank');
         }
     }
 });
 
 searchEngines.forEach(engine => {
     engine.addEventListener('click', () => {
-        searchEngines.forEach(e => e.classList.remove('active'));
-        engine.classList.add('active');
-        currentEngine = engine.alt.toLowerCase();
+        const query = searchInput.value.trim();
+        if (query) {
+            const engineType = engine.dataset.engine;
+            const searchUrl = engineType === 'google' 
+                ? `https://www.google.com/search?q=${encodeURIComponent(query)}`
+                : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+            window.open(searchUrl, '_blank');
+        }
     });
 });
+
+// 辅助函数
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+
+function ensureHttps(url) {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        return `https://${url}`;
+    }
+    return url;
+}
 
 // 初始化
 initTheme(); 
