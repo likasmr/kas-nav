@@ -141,22 +141,27 @@ body {
 }
 
 #themeToggle {
-    background: transparent;
+    background: none;
     border: none;
-    cursor: pointer;
     padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: var(--transition);
+    box-shadow: none;
 }
 
 #themeToggle:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
+    transform: none;
+    background: none;
 }
 
 #themeToggle svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     fill: var(--text-primary);
+    transition: var(--transition);
 }
 
 [data-theme="dark"] #themeToggle .sun-icon {
