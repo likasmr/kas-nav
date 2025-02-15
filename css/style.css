@@ -1,56 +1,75 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --bg-color: #f5f6fa;
-    --text-color: #2c3e50;
-    --card-bg: #ffffff;
-    --border-radius: 8px;
-    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --primary-color: #4a90e2;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --card-background: #f5f5f5;
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-/* 基础布局 */
-body {
+/* 深色模式变量 */
+[data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-background: #2d2d2d;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
     margin: 0;
-    padding: 20px;
-    font-family: 'Segoe UI', system-ui;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.header {
-    max-width: 800px;
-    margin: 0 auto 30px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* 搜索栏样式 */
-.search-bar {
+.search-container {
     display: flex;
-    gap: 10px;
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-.search-input {
+.search-box {
+    display: flex;
     flex: 1;
-    padding: 12px 20px;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 16px;
+    max-width: 600px;
+    margin-right: 20px;
 }
 
-.search-button {
-    padding: 0 20px;
-    border: none;
-    background: var(--secondary-color);
+#searchInput {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#searchButton {
+    padding: 12px 24px;
+    background-color: var(--primary-color);
     color: white;
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10px;
     cursor: pointer;
 }
 
-/* 分类区块布局 */
+/* 分类区块样式 */
 .categories-container {
-    max-width: 1200px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
@@ -58,11 +77,18 @@ body {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    .categories-container {
-        grid-template-columns: 1fr;
+    .search-container {
+        flex-direction: column;
     }
     
-    .search-input {
-        padding: 10px 15px;
+    .search-box {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .theme-toggle {
+        width: 100%;
+        text-align: center;
     }
 } 
