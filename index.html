@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二次元导航站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <!-- 顶部导航栏 -->
+    <header class="glass-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="material-icons">explore</span>
+                <h1>二次元导航</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索或输入网址..." id="searchInput">
+                <button class="search-btn">
+                    <span class="material-icons">search</span>
+                </button>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="material-icons">dark_mode</span>
+                </button>
+                <button class="add-link">
+                    <span class="material-icons">add</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main>
+        <!-- 分类区域 -->
+        <div class="categories-grid">
+            <!-- 常用网站 -->
+            <section class="category-card glass">
+                <h2>常用网站</h2>
+                <div class="links-grid">
+                    <a href="https://github.com" class="link-card glass">
+                        <img src="https://github.com/favicon.ico" alt="GitHub">
+                        <span>GitHub</span>
+                    </a>
+                    <!-- 更多链接 -->
+                </div>
+            </section>
+
+            <!-- 娱乐分类 -->
+            <section class="category-card glass">
+                <h2>二次元</h2>
+                <div class="links-grid">
+                    <a href="https://bilibili.com" class="link-card glass">
+                        <img src="https://www.bilibili.com/favicon.ico" alt="哔哩哔哩">
+                        <span>哔哩哔哩</span>
+                    </a>
+                    <!-- 更多链接 -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="floating-circle"></div>
+        <div class="floating-square"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html> 
