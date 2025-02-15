@@ -1,0 +1,62 @@
+/* 基础样式 */
+:root {
+  --primary-color: #ff7f7f; /* 樱花粉 */
+  --secondary-color: #6f4c5b; /* 和风紫 */
+  --bg-color: #fff5ee; /* 浅米色 */
+  --text-color: #4a4a4a;
+  --accent-color: #ffd700; /* 金色 */
+}
+
+/* 二次元风格主题 */
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background: var(--bg-color) url('../assets/bg/sakura.png') no-repeat center/cover;
+  color: var(--text-color);
+}
+
+/* 顶部导航栏 */
+.navbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索框 */
+.search-box {
+  border: 2px solid var(--primary-color);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* 分类区块 */
+.category {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+}
+
+/* 按钮样式 */
+.button {
+  background: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+/* 深色模式 */
+[data-theme="dark"] {
+  --bg-color: #2d2d2d;
+  --text-color: #f0f0f0;
+  background-image: url('../assets/bg/night-sky.png');
+} 
