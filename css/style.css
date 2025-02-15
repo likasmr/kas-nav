@@ -143,25 +143,20 @@ body {
 #themeToggle {
     background: transparent;
     border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0.5rem;
     transition: var(--transition);
 }
 
 #themeToggle:hover {
     transform: scale(1.1);
+    opacity: 0.8;
 }
 
 #themeToggle svg {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     fill: var(--text-primary);
-    transition: var(--transition);
 }
 
 [data-theme="dark"] #themeToggle .sun-icon {
