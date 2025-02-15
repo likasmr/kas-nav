@@ -8,22 +8,17 @@
 </head>
 <body>
     <div class="container">
-        <!-- 顶部搜索区域 -->
-        <header class="header">
-            <div class="search-container">
+        <!-- 顶部搜索栏 -->
+        <header class="search-container">
+            <div class="search-box">
                 <input type="text" id="searchInput" placeholder="搜索或输入网址">
-                <div class="search-engines">
-                    <button class="search-engine" data-engine="google">Google</button>
-                    <button class="search-engine" data-engine="bing">Bing</button>
-                </div>
+                <button id="searchButton">搜索</button>
             </div>
         </header>
 
-        <!-- 分类导航区域 -->
-        <main class="content">
-            <div class="categories" id="categoriesContainer">
-                <!-- 分类内容将通过JavaScript动态生成 -->
-            </div>
+        <!-- 分类区块 -->
+        <main class="categories-container">
+            <!-- 分类内容将通过JavaScript动态加载 -->
         </main>
     </div>
     <script src="js/app.js"></script>

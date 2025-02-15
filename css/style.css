@@ -3,7 +3,6 @@
     --background-color: #ffffff;
     --text-color: #333333;
     --card-background: #f5f5f5;
-    --header-height: 80px;
 }
 
 /* 深色模式变量 */
@@ -33,52 +32,43 @@ body {
     padding: 20px;
 }
 
-/* 顶部搜索区域样式 */
-.header {
-    height: var(--header-height);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* 搜索栏样式 */
+.search-container {
     margin-bottom: 30px;
 }
 
-.search-container {
-    width: 100%;
+.search-box {
+    display: flex;
+    gap: 10px;
     max-width: 600px;
-    text-align: center;
+    margin: 0 auto;
 }
 
 #searchInput {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 16px;
+    flex: 1;
+    padding: 12px;
     border: 2px solid var(--primary-color);
-    border-radius: 24px;
-    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
-.search-engines {
-    margin-top: 10px;
-}
-
-.search-engine {
-    padding: 6px 12px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 4px;
+#searchButton {
+    padding: 12px 24px;
     background-color: var(--primary-color);
     color: white;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-/* 分类区域样式 */
-.categories {
+/* 分类区块样式 */
+.categories-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    padding: 20px 0;
 }
 
 /* 响应式设计 */
@@ -87,7 +77,11 @@ body {
         padding: 10px;
     }
     
-    .categories {
-        grid-template-columns: 1fr;
+    .search-box {
+        flex-direction: column;
+    }
+    
+    #searchButton {
+        width: 100%;
     }
 } 
