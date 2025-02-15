@@ -3,31 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人导航站</title>
+    <title>我的导航站</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 顶部搜索栏 -->
-    <header class="search-bar">
-        <input 
-            type="search" 
-            placeholder="搜索或输入网址..."
-            aria-label="网站搜索"
-            class="search-input">
+    <header class="header">
+        <!-- 搜索框 -->
+        <div class="search-container">
+            <input type="text" id="search" 
+                   placeholder="搜索或输入网址..." 
+                   autocomplete="off">
+        </div>
     </header>
 
-    <!-- 分类区块容器 -->
-    <main class="categories">
-        <!-- 示例分类 - 后续由JS动态生成 -->
+    <main class="container">
+        <!-- 分类容器 -->
         <section class="category">
-            <h2 class="category-title">常用工具</h2>
-            <div class="links-grid">
-                <a href="https://github.com" class="link-item" target="_blank">
+            <h2 class="category-title">开发工具</h2>
+            <div class="links">
+                <a href="https://github.com" class="link" target="_blank">
+                    <span class="favicon"></span>
                     GitHub
                 </a>
-                <a href="https://translate.google.com" class="link-item" target="_blank">
-                    Google翻译
-                </a>
+                <!-- 更多链接... -->
             </div>
         </section>
     </main>
