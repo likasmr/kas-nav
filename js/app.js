@@ -11,11 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.appendChild(icon);
     }
 
-    // 从 localStorage 加载主题
+    // 从 localStorage 加载主题, 如果没有, 则根据系统设置
     function loadTheme() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.body.classList.add(savedTheme);
+        } else {
+            // 检查系统是否偏好深色模式
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+            }
         }
     }
 
