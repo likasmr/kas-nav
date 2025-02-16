@@ -2,10 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
 
+    // 设置初始图标
+    function setIcon() {
+        const icon = document.createElement('i');
+        icon.classList.add('fas'); // 使用 Font Awesome 图标库
+        icon.classList.add(document.body.classList.contains('dark-mode') ? 'fa-sun' : 'fa-moon');
+        themeToggle.innerHTML = ''; // 清空按钮内容
+        themeToggle.appendChild(icon);
+    }
+
     // 切换主题
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         // 可以在这里保存用户的主题偏好到 localStorage
+
+        // 更新图标
+        setIcon();
     });
 
     // 模拟从 JSON 加载数据
@@ -57,4 +69,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadLinks();
+    setIcon(); // 页面加载时设置初始图标
 }); 

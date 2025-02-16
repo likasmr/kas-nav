@@ -70,19 +70,34 @@ header {
 
 /* 主题切换按钮 */
 .theme-switch button {
-    padding: 10px 15px;
-    background-color: #f0f0f0;
+    padding: 10px;
+    background-color: transparent;
     color: #333;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dark-mode .theme-switch button {
-    background-color: #333;
     color: #f0f0f0;
-    border-color: #555;
+}
+
+.theme-switch button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.dark-mode .theme-switch button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-switch button i {
+    font-size: 1.2em;
 }
 
 /* 链接分类区块 */
