@@ -1,31 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
-    const searchEngines = {
-        google: 'https://www.google.com/search?q=',
-        bing: 'https://www.bing.com/search?q=',
-        baidu: 'https://www.baidu.com/s?wd=',
-        duckduckgo: 'https://duckduckgo.com/?q='
-    };
+    const searchBtn = document.getElementById('searchBtn');
 
-    // 搜索引擎按钮点击事件
-    document.querySelector('.search-engines').addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') {
-            const engine = e.target.dataset.engine;
-            const query = searchInput.value.trim();
-            
-            if (query) {
-                window.open(searchEngines[engine] + encodeURIComponent(query), '_blank');
-            }
+    searchBtn.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         }
     });
 
-    // 回车键搜索（默认使用Google）
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query) {
-                window.open(searchEngines.google + encodeURIComponent(query), '_blank');
-            }
+     searchInput.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            searchBtn.click();
         }
     });
 }); 

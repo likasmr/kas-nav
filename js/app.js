@@ -1,58 +1,60 @@
-// 主题切换功能
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    // 初始化主题
-    const currentTheme = localStorage.getItem('theme') || 
-                        (prefersDarkScheme.matches ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    
+    const contentDiv = document.getElementById('content');
+
+    // 切换主题
     themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        document.body.classList.toggle('dark-mode');
+        // 可以在这里保存用户的主题偏好到 localStorage
     });
-});
 
-// 示例数据
-const sampleData = {
-    categories: [
-        {
-            title: "常用工具",
-            links: [
-                { name: "GitHub", url: "https://github.com", icon: "github.png" },
-                { name: "Gmail", url: "https://gmail.com", icon: "gmail.png" }
-            ]
-        },
-        {
-            title: "学习资源",
-            links: [
-                { name: "MDN", url: "https://developer.mozilla.org", icon: "mdn.png" },
-                { name: "Stack Overflow", url: "https://stackoverflow.com", icon: "stackoverflow.png" }
-            ]
-        }
-    ]
-};
+    // 模拟从 JSON 加载数据
+    function loadLinks() {
+        const linksData = [
+            {
+                category: "常用网站",
+                links: [
+                    { name: "Google", url: "https://www.google.com", icon: "" },
+                    { name: "GitHub", url: "https://github.com", icon: "" },
+                    // 更多链接...
+                ]
+            },
+            {
+                category: "学习资源",
+                links: [
+                    { name: "MDN Web Docs", url: "https://developer.mozilla.org", icon: "" },
+                    { name: "Stack Overflow", url: "https://stackoverflow.com", icon: "" },
+                    // 更多链接...
+                ]
+            }
+            // 更多分类...
+        ];
 
-// 渲染分类和链接
-function renderCategories(data) {
-    const container = document.querySelector('.categories-container');
-    container.innerHTML = data.categories.map(category => `
-        <div class="category">
-            <h2 class="category-title">${category.title}</h2>
-            <div class="links-grid">
-                ${category.links.map(link => `
-                    <a href="${link.url}" class="link-card" target="_blank">
-                        ${link.name}
-                    </a>
-                `).join('')}
-            </div>
-        </div>
-    `).join('');
-}
+        linksData.forEach(categoryData => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.classList.add('category');
 
-// 初始化页面
-renderCategories(sampleData); 
+            const title = document.createElement('h2');
+            title.classList.add('category-title');
+            title.textContent = categoryData.category;
+            categoryDiv.appendChild(title);
+
+            const linksGrid = document.createElement('div');
+            linksGrid.classList.add('links-grid');
+
+            categoryData.links.forEach(link => {
+                const linkItem = document.createElement('a');
+                linkItem.classList.add('link-item');
+                linkItem.href = link.url;
+                linkItem.textContent = link.name;
+                // 如果有图标，可以在这里添加 <img> 标签
+                linksGrid.appendChild(linkItem);
+            });
+
+            categoryDiv.appendChild(linksGrid);
+            contentDiv.appendChild(categoryDiv);
+        });
+    }
+
+    loadLinks();
+}); 

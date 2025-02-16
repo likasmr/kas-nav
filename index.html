@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <!-- 搜索区域 -->
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜索或输入网址">
-                <div class="search-engines">
-                    <button data-engine="google">Google</button>
-                    <button data-engine="bing">Bing</button>
-                    <button data-engine="baidu">百度</button>
-                    <button data-engine="duckduckgo">DuckDuckGo</button>
-                </div>
+        <header>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索...">
+                <button id="searchBtn">搜索</button>
             </div>
-        </div>
-
-        <!-- 导航分类区域 -->
-        <div class="categories-container">
-            <!-- 分类将通过JavaScript动态生成 -->
-        </div>
+            <div class="theme-switch">
+                <button id="themeToggle">切换模式</button>
+            </div>
+        </header>
+        <main id="content">
+            <!-- 链接分类将在这里动态加载 -->
+        </main>
     </div>
-    
-    <!-- 主题切换按钮 -->
-    <button id="themeToggle" class="theme-toggle">
-        <span class="light-icon">☀️</span>
-        <span class="dark-icon">🌙</span>
-    </button>
-
     <script src="js/app.js"></script>
     <script src="js/search.js"></script>
 </body>
