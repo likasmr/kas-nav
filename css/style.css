@@ -1,0 +1,87 @@
+:root {
+    --primary: #6366f1;
+    --background: #ffffff;
+    --surface: rgba(255, 255, 255, 0.8);
+    --text: #1e293b;
+    --border: #e2e8f0;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --background: #0f172a;
+    --surface: rgba(15, 23, 42, 0.8);
+    --text: #f8fafc;
+    --border: #334155;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui;
+    transition: background 0.3s ease;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.search-bar {
+    max-width: 800px;
+    margin: 2rem auto;
+    backdrop-filter: blur(10px);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+#searchInput {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 1.1rem;
+    border-radius: 12px;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .categories-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-container {
+        flex-direction: column;
+    }
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    /* 其他样式... */
+} 

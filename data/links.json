@@ -1,34 +1,26 @@
 {
-    "categories": [
+    "开发工具": [
         {
-            "name": "开发工具",
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com",
-                    "icon": "fab fa-github"
-                },
-                {
-                    "name": "CodePen",
-                    "url": "https://codepen.io",
-                    "icon": "fab fa-codepen"
-                }
-            ]
+            "name": "GitHub",
+            "url": "https://github.com",
+            "icon": "fab fa-github"
         },
         {
-            "name": "搜索引擎",
-            "links": [
-                {
-                    "name": "Google",
-                    "url": "https://google.com",
-                    "icon": "fab fa-google"
-                },
-                {
-                    "name": "DuckDuckGo",
-                    "url": "https://duckduckgo.com",
-                    "icon": "fas fa-search"
-                }
-            ]
+            "name": "Stack Overflow",
+            "url": "https://stackoverflow.com",
+            "icon": "fab fa-stack-overflow"
+        }
+    ],
+    "设计资源": [
+        {
+            "name": "Dribbble",
+            "url": "https://dribbble.com",
+            "icon": "fab fa-dribbble"
+        },
+        {
+            "name": "Figma Community",
+            "url": "https://figma.com/community",
+            "icon": "fab fa-figma"
         }
     ]
-}
+} 
