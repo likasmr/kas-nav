@@ -1,32 +1,34 @@
-[
-    {
-        "name": "开发工具",
-        "links": [
-            {
-                "title": "GitHub",
-                "url": "https://github.com",
-                "description": "代码托管平台"
-            },
-            {
-                "title": "CodePen",
-                "url": "https://codepen.io",
-                "description": "前端代码沙盒"
-            }
-        ]
-    },
-    {
-        "name": "常用网站",
-        "links": [
-            {
-                "title": "知乎",
-                "url": "https://www.zhihu.com",
-                "description": "问答社区"
-            },
-            {
-                "title": "Bilibili",
-                "url": "https://www.bilibili.com",
-                "description": "视频平台"
-            }
-        ]
-    }
-] 
+{
+    "categories": [
+        {
+            "name": "开发工具",
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com",
+                    "icon": "assets/icons/github.svg"
+                },
+                {
+                    "name": "CodePen",
+                    "url": "https://codepen.io",
+                    "icon": "assets/icons/codepen.svg"
+                }
+            ]
+        },
+        {
+            "name": "学习资源",
+            "links": [
+                {
+                    "name": "MDN Web Docs",
+                    "url": "https://developer.mozilla.org",
+                    "icon": "assets/icons/mdn.svg"
+                },
+                {
+                    "name": "Stack Overflow",
+                    "url": "https://stackoverflow.com",
+                    "icon": "assets/icons/stackoverflow.svg"
+                }
+            ]
+        }
+    ]
+} 
