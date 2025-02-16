@@ -1,1 +1,34 @@
- 
+{
+    "categories": [
+        {
+            "name": "开发工具",
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com",
+                    "icon": "fab fa-github"
+                },
+                {
+                    "name": "CodePen",
+                    "url": "https://codepen.io",
+                    "icon": "fab fa-codepen"
+                }
+            ]
+        },
+        {
+            "name": "搜索引擎",
+            "links": [
+                {
+                    "name": "Google",
+                    "url": "https://google.com",
+                    "icon": "fab fa-google"
+                },
+                {
+                    "name": "DuckDuckGo",
+                    "url": "https://duckduckgo.com",
+                    "icon": "fas fa-search"
+                }
+            ]
+        }
+    ]
+}
