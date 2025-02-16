@@ -2,16 +2,31 @@
     "categories": [
         {
             "name": "开发工具",
+            "icon": "assets/icons/code.svg",
             "links": [
-                {"name": "GitHub", "url": "https://github.com"},
-                {"name": "CodePen", "url": "https://codepen.io"}
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com",
+                    "icon": "assets/icons/github.svg"
+                },
+                {
+                    "name": "CodePen",
+                    "url": "https://codepen.io",
+                    "icon": "assets/icons/codepen.svg"
+                }
             ]
         },
         {
-            "name": "学习资源",
+            "name": "搜索引擎",
             "links": [
-                {"name": "MDN", "url": "https://developer.mozilla.org"},
-                {"name": "Stack Overflow", "url": "https://stackoverflow.com"}
+                {
+                    "name": "Google",
+                    "url": "https://google.com"
+                },
+                {
+                    "name": "Bing",
+                    "url": "https://bing.com"
+                }
             ]
         }
     ]
