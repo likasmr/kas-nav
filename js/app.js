@@ -1,61 +1,75 @@
-// 初始化配置
-const config = {
-    searchEngines: {
-        google: 'https://www.google.com/search?q=',
-        bing: 'https://www.bing.com/search?q=',
-        baidu: 'https://www.baidu.com/s?wd='
-    },
-    dataSource: 'data/links.json'
-};
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const searchBar = document.getElementById('searchBar');
+    const categoriesContainer = document.getElementById('categories');
 
-// 主题切换
-document.querySelector('.theme-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    document.documentElement.setAttribute('data-theme', 
-        document.body.classList.contains('dark-theme') ? 'dark' : 'light');
-});
+    // 初始化主题
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-// 动态加载链接数据
-async function loadLinks() {
-    try {
-        const response = await fetch(config.dataSource);
-        const data = await response.json();
-        renderCategories(data);
-    } catch (error) {
-        console.error('数据加载失败:', error);
-    }
-}
+    themeToggle.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    });
 
-// 渲染分类区块
-function renderCategories(data) {
-    const container = document.querySelector('.grid-container');
-    container.innerHTML = data.map(category => `
-        <div class="category-card animate__animated animate__fadeIn">
-            <h3>${category.name}</h3>
-            <div class="links">
-                ${category.links.map(link => `
-                    <a href="${link.url}" target="_blank" class="link-item">
-                        <i class="${link.icon || 'fas fa-link'}"></i>
-                        ${link.name}
-                    </a>
-                `).join('')}
-            </div>
-        </div>
-    `).join('');
-}
+    // 示例分类数据
+    const categories = [
+        {
+            name: '社交',
+            links: [
+                { name: '微信', url: 'https://weixin.qq.com/' },
+                { name: '微博', url: 'https://weibo.com/' }
+            ]
+        },
+        {
+            name: '学习',
+            links: [
+                { name: '知乎', url: 'https://www.zhihu.com/' },
+                { name: 'Coursera', url: 'https://www.coursera.org/' }
+            ]
+        },
+        {
+            name: '娱乐',
+            links: [
+                { name: 'B站', url: 'https://www.bilibili.com/' },
+                { name: 'Netflix', url: 'https://www.netflix.com/' }
+            ]
+        }
+    ];
 
-// 搜索功能
-document.querySelector('.search-btn').addEventListener('click', performSearch);
-document.querySelector('.search-input').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') performSearch();
-});
+    // 渲染分类
+    categories.forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.classList.add('category');
 
-function performSearch() {
-    const query = document.querySelector('.search-input').value;
-    const engine = document.querySelector('.engine-select').value;
-    const searchUrl = config.searchEngines[engine] + encodeURIComponent(query);
-    window.open(searchUrl, '_blank');
-}
+        const categoryTitle = document.createElement('h2');
+        categoryTitle.textContent = category.name;
+        categoryDiv.appendChild(categoryTitle);
 
-// 初始化
-loadLinks(); 
+        const linkList = document.createElement('ul');
+        category.links.forEach(link => {
+            const listItem = document.createElement('li');
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.textContent = link.name;
+            anchor.target = '_blank';
+            listItem.appendChild(anchor);
+            linkList.appendChild(listItem);
+        });
+
+        categoryDiv.appendChild(linkList);
+        categoriesContainer.appendChild(categoryDiv);
+    });
+
+    // 搜索功能
+    searchBar.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchBar.value.trim();
+            if (query) {
+                // 默认使用百度搜索
+                window.open(`https://www.baidu.com/s?wd=${encodeURIComponent(query)}`, '_blank');
+            }
+        }
+    });
+}); 
