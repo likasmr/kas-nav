@@ -1,33 +1,32 @@
-{
-    "categories": [
-        {
-            "name": "开发工具",
-            "icon": "assets/icons/code.svg",
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com",
-                    "icon": "assets/icons/github.svg"
-                },
-                {
-                    "name": "CodePen",
-                    "url": "https://codepen.io",
-                    "icon": "assets/icons/codepen.svg"
-                }
-            ]
-        },
-        {
-            "name": "搜索引擎",
-            "links": [
-                {
-                    "name": "Google",
-                    "url": "https://google.com"
-                },
-                {
-                    "name": "Bing",
-                    "url": "https://bing.com"
-                }
-            ]
-        }
-    ]
-} 
+[
+    {
+        "name": "开发工具",
+        "links": [
+            {
+                "name": "GitHub",
+                "url": "https://github.com",
+                "icon": "fab fa-github"
+            },
+            {
+                "name": "CodePen",
+                "url": "https://codepen.io",
+                "icon": "fab fa-codepen"
+            }
+        ]
+    },
+    {
+        "name": "设计资源",
+        "links": [
+            {
+                "name": "Dribbble",
+                "url": "https://dribbble.com",
+                "icon": "fab fa-dribbble"
+            },
+            {
+                "name": "Behance",
+                "url": "https://www.behance.net",
+                "icon": "fab fa-behance"
+            }
+        ]
+    }
+] 
