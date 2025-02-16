@@ -5,28 +5,24 @@
             "links": [
                 {
                     "name": "GitHub",
-                    "url": "https://github.com",
-                    "icon": "assets/icons/github.svg"
+                    "url": "https://github.com"
                 },
                 {
-                    "name": "CodePen",
-                    "url": "https://codepen.io",
-                    "icon": "assets/icons/codepen.svg"
+                    "name": "Stack Overflow",
+                    "url": "https://stackoverflow.com"
                 }
             ]
         },
         {
-            "name": "学习资源",
+            "name": "常用网站",
             "links": [
                 {
-                    "name": "MDN Web Docs",
-                    "url": "https://developer.mozilla.org",
-                    "icon": "assets/icons/mdn.svg"
+                    "name": "知乎",
+                    "url": "https://www.zhihu.com"
                 },
                 {
-                    "name": "Stack Overflow",
-                    "url": "https://stackoverflow.com",
-                    "icon": "assets/icons/stackoverflow.svg"
+                    "name": "豆瓣",
+                    "url": "https://www.douban.com"
                 }
             ]
         }

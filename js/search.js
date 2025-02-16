@@ -1,18 +1,26 @@
-// 搜索引擎切换
-document.querySelectorAll('.engine-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelector('.engine-btn.active').classList.remove('active');
-        this.classList.add('active');
+// 搜索引擎配置
+const SEARCH_ENGINES = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://www.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?wd='
+};
+
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        performSearch('google'); // 默认使用Google
+    }
+});
+
+document.querySelectorAll('.search-engines button').forEach(button => {
+    button.addEventListener('click', () => {
+        const engine = button.dataset.engine;
+        performSearch(engine);
     });
 });
 
-// 搜索处理
-document.getElementById('searchInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const query = e.target.value.trim();
-        if (!query) return;
-        
-        const activeEngine = document.querySelector('.engine-btn.active').dataset.engine;
-        window.open(`${activeEngine}${encodeURIComponent(query)}`, '_self');
+function performSearch(engine) {
+    const query = document.getElementById('searchInput').value;
+    if (query) {
+        window.location.href = `${SEARCH_ENGINES[engine]}${encodeURIComponent(query)}`;
     }
-}); 
+} 
