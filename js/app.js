@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.appendChild(icon);
     }
 
+    // 从 localStorage 加载主题
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.classList.add(savedTheme);
+        }
+    }
+
     // 切换主题
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -18,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 更新图标
         setIcon();
+        // 保存主题到 localStorage
+        const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : '';
+        localStorage.setItem('theme', currentTheme);
     });
 
     // 模拟从 JSON 加载数据
@@ -68,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    loadTheme();
     loadLinks();
     setIcon(); // 页面加载时设置初始图标
 }); 
