@@ -1,33 +1,33 @@
-// 链接数据示例
-const linksData = {
-    "开发工具": [
-        { name: "GitHub", url: "https://github.com", icon: "fab fa-github" },
-        { name: "CodePen", url: "https://codepen.io", icon: "fab fa-codepen" }
-    ],
-    "设计资源": [
-        { name: "Dribbble", url: "https://dribbble.com", icon: "fab fa-dribbble" },
-        { name: "Behance", url: "https://behance.net", icon: "fab fa-behance" }
-    ]
-};
+// 主题切换功能
+const themeBtn = document.getElementById('themeBtn');
+const storedTheme = localStorage.getItem('theme') || 'light';
 
-// 初始化页面
-function initApp() {
-    renderCategories();
-    setupSearch();
-    setupThemeToggle();
+document.documentElement.setAttribute('data-theme', storedTheme);
+
+themeBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
+// 加载链接数据
+async function loadLinks() {
+    const response = await fetch('data/links.json');
+    const data = await response.json();
+    renderCategories(data);
 }
 
-// 渲染分类区块
-function renderCategories() {
+function renderCategories(data) {
     const container = document.getElementById('categories');
-    container.innerHTML = Object.entries(linksData).map(([category, items]) => `
-        <div class="category-card">
-            <h3 class="category-title">${category}</h3>
+    container.innerHTML = data.map(category => `
+        <div class="category">
+            <h2>${category.name}</h2>
             <div class="links-grid">
-                ${items.map(item => `
-                    <a href="${item.url}" class="link-item">
-                        <i class="${item.icon}"></i>
-                        <span>${item.name}</span>
+                ${category.links.map(link => `
+                    <a href="${link.url}" class="link-card" target="_blank">
+                        <h3>${link.title}</h3>
+                        ${link.description ? `<p>${link.description}</p>` : ''}
                     </a>
                 `).join('')}
             </div>
@@ -35,29 +35,5 @@ function renderCategories() {
     `).join('');
 }
 
-// 搜索功能
-function setupSearch() {
-    const searchInput = document.getElementById('searchInput');
-    
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query) {
-                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-            }
-        }
-    });
-}
-
-// 主题切换
-function setupThemeToggle() {
-    const toggleBtn = document.querySelector('.theme-toggle');
-    toggleBtn.addEventListener('click', () => {
-        document.documentElement.setAttribute('data-theme',
-            document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
-        );
-    });
-}
-
-// 启动应用
-document.addEventListener('DOMContentLoaded', initApp); 
+// 初始化加载
+document.addEventListener('DOMContentLoaded', loadLinks); 

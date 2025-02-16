@@ -1,26 +1,32 @@
-{
-    "开发工具": [
-        {
-            "name": "GitHub",
-            "url": "https://github.com",
-            "icon": "fab fa-github"
-        },
-        {
-            "name": "Stack Overflow",
-            "url": "https://stackoverflow.com",
-            "icon": "fab fa-stack-overflow"
-        }
-    ],
-    "设计资源": [
-        {
-            "name": "Dribbble",
-            "url": "https://dribbble.com",
-            "icon": "fab fa-dribbble"
-        },
-        {
-            "name": "Figma Community",
-            "url": "https://figma.com/community",
-            "icon": "fab fa-figma"
-        }
-    ]
-} 
+[
+    {
+        "name": "开发工具",
+        "links": [
+            {
+                "title": "GitHub",
+                "url": "https://github.com",
+                "description": "代码托管平台"
+            },
+            {
+                "title": "CodePen",
+                "url": "https://codepen.io",
+                "description": "前端代码沙盒"
+            }
+        ]
+    },
+    {
+        "name": "常用网站",
+        "links": [
+            {
+                "title": "知乎",
+                "url": "https://www.zhihu.com",
+                "description": "问答社区"
+            },
+            {
+                "title": "Bilibili",
+                "url": "https://www.bilibili.com",
+                "description": "视频平台"
+            }
+        ]
+    }
+] 
