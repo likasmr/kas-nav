@@ -170,165 +170,102 @@ header {
     }
 }
 
-/* 设置面板按钮 */
-.settings-panel {
+/* 数据管理样式 */
+.data-management {
     position: fixed;
-    bottom: 20px;
-    right: 80px; /* 与主题切换按钮保持距离 */
-}
-
-.settings-toggle {
-    padding: 10px;
-    background-color: transparent;
-    color: #333;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.dark-mode .settings-toggle {
-    color: #f0f0f0;
-}
-
-.settings-toggle:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    transform: rotate(45deg);
-}
-
-.dark-mode .settings-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* 设置抽屉 */
-.settings-drawer {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 300px;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
+    bottom: 80px;
+    right: 30px;
     z-index: 1000;
 }
 
-.dark-mode .settings-drawer {
-    background-color: #1e1e1e;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.settings-drawer.open {
-    right: 0;
-}
-
-.drawer-header {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dark-mode .drawer-header {
-    border-bottom-color: #333;
-}
-
-.drawer-header h3 {
-    margin: 0;
-    color: #333;
-}
-
-.dark-mode .drawer-header h3 {
-    color: #f0f0f0;
-}
-
-.close-drawer {
-    background: none;
-    border: none;
-    color: #666;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.dark-mode .close-drawer {
-    color: #999;
-}
-
-.drawer-content {
-    padding: 20px;
-}
-
-.settings-section {
-    margin-bottom: 30px;
-}
-
-.settings-section h4 {
-    margin: 0 0 15px 0;
-    color: #333;
-}
-
-.dark-mode .settings-section h4 {
-    color: #f0f0f0;
-}
-
 .settings-btn {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    border: none;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-}
-
-.dark-mode .settings-btn {
-    background-color: #333;
-    border-color: #444;
-    color: #f0f0f0;
 }
 
 .settings-btn:hover {
-    background-color: #eee;
+    transform: rotate(90deg) scale(1.1);
+    background: #0056b3;
 }
 
-.dark-mode .settings-btn:hover {
-    background-color: #444;
+.settings-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
 }
 
-.setting-item {
-    margin: 15px 0;
+.modal-content {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 12px;
+    animation: modalSlide 0.3s ease-out;
+}
+
+.dark-mode .modal-content {
+    background: #242424;
+}
+
+@keyframes modalSlide {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.settings-options {
+    display: grid;
+    gap: 15px;
+}
+
+.data-option {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 10px;
+    color: #333;
 }
 
-.setting-item label {
-    color: #666;
-}
-
-.dark-mode .setting-item label {
-    color: #999;
-}
-
-.setting-item select {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-}
-
-.dark-mode .setting-item select {
-    background-color: #333;
-    border-color: #444;
+.dark-mode .data-option {
+    background: #333;
     color: #f0f0f0;
+}
+
+.data-option:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.dark-mode .data-option:hover {
+    background: #444;
+}
+
+.backup-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    color: #6c757d;
+    font-size: 0.9em;
 } 

@@ -1,3 +1,7 @@
+let linksData = JSON.parse(localStorage.getItem('linksData')) || [
+    // 原有默认数据...
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
@@ -33,26 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 模拟从 JSON 加载数据
     function loadLinks() {
-        const linksData = [
-            {
-                category: "常用网站",
-                links: [
-                    { name: "Google", url: "https://www.google.com", icon: "" },
-                    { name: "GitHub", url: "https://github.com", icon: "" },
-                    // 更多链接...
-                ]
-            },
-            {
-                category: "学习资源",
-                links: [
-                    { name: "MDN Web Docs", url: "https://developer.mozilla.org", icon: "" },
-                    { name: "Stack Overflow", url: "https://stackoverflow.com", icon: "" },
-                    // 更多链接...
-                ]
-            }
-            // 更多分类...
-        ];
-
         linksData.forEach(categoryData => {
             const categoryDiv = document.createElement('div');
             categoryDiv.classList.add('category');
@@ -82,4 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTheme();
     loadLinks();
     setIcon(); // 页面加载时设置初始图标
+
+    // 初始化保存数据
+    localStorage.setItem('linksData', JSON.stringify(linksData));
 }); 
