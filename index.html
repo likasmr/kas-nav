@@ -17,12 +17,38 @@
             <div class="theme-switch">
                 <button id="themeToggle">切换模式</button>
             </div>
+            <!-- 添加链接按钮 -->
+            <button id="addLinkBtn">添加链接</button>
         </header>
         <main id="content">
             <!-- 链接分类将在这里动态加载 -->
         </main>
     </div>
+
+    <!-- 添加链接的模态框 -->
+    <div id="addLinkModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>添加链接</h2>
+            <form id="addLinkForm">
+                <label for="categorySelect">选择分类:</label>
+                <select id="categorySelect">
+                    <!-- 分类选项将在这里动态加载 -->
+                </select>
+
+                <label for="linkName">链接名称:</label>
+                <input type="text" id="linkName" required>
+
+                <label for="linkUrl">链接 URL:</label>
+                <input type="url" id="linkUrl" required>
+
+                <button type="submit">添加</button>
+            </form>
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/modal.js"></script>
 </body>
 </html> 

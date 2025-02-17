@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
-    const addLinkBtn = document.createElement('button'); // 添加链接按钮
+    let linksData = {}; // 用于存储链接数据的全局变量
 
     // 设置初始图标
     function setIcon() {
@@ -37,28 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', currentTheme);
     });
 
-    // 从 JSON 文件加载数据
+    // 从 JSON 文件加载链接数据
     async function loadLinks() {
         try {
             const response = await fetch('data/links.json');
-            const linksData = await response.json();
-            renderLinks(linksData);
-          } catch (error) {
-            console.error('Error loading links:', error);
-            contentDiv.innerHTML = '<p>加载链接失败，请稍后重试。</p>';
-          }
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            linksData = await response.json();
+            renderLinks();
+        } catch (error) {
+            console.error("Error loading links:", error);
+            // 可以显示一个错误提示给用户
+        }
     }
 
     // 渲染链接
-    function renderLinks(linksData) {
+    function renderLinks() {
         contentDiv.innerHTML = ''; // 清空现有内容
-        linksData.forEach(categoryData => {
+
+        linksData.categories.forEach(categoryData => {
             const categoryDiv = document.createElement('div');
             categoryDiv.classList.add('category');
 
             const title = document.createElement('h2');
             title.classList.add('category-title');
-            title.textContent = categoryData.category;
+            title.textContent = categoryData.name;
             categoryDiv.appendChild(title);
 
             const linksGrid = document.createElement('div');
@@ -78,62 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 添加"添加链接"按钮
-    addLinkBtn.textContent = '添加链接';
-    addLinkBtn.classList.add('add-link-btn');
-    document.querySelector('.container').appendChild(addLinkBtn); // 添加到 container
+    // 添加链接 (临时实现, 之后会与后端同步)
+    function addLink(categoryName, linkName, linkUrl) {
+        const category = linksData.categories.find(cat => cat.name === categoryName);
+        if (category) {
+            category.links.push({ name: linkName, url: linkUrl, icon: "" });
+            renderLinks(); // 重新渲染
+            // TODO: 将更改同步到后端 (例如, 发送请求到 Cloudflare Workers)
+        } else {
+            console.error("Category not found:", categoryName);
+        }
+    }
 
-    // 模态框 (Modal) - 用于添加/编辑链接
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>添加链接</h2>
-            <form id="addLinkForm">
-                <label for="category">分类:</label>
-                <input type="text" id="category" name="category" required>
-
-                <label for="linkName">名称:</label>
-                <input type="text" id="linkName" name="name" required>
-
-                <label for="linkUrl">URL:</label>
-                <input type="url" id="linkUrl" name="url" required>
-
-                <label for="linkIcon">图标 URL:</label>
-                <input type="text" id="linkIcon" name="icon">
-
-                <button type="submit">添加</button>
-            </form>
-        </div>
-    `;
-    document.body.appendChild(modal);
-
-    // 显示模态框
-    addLinkBtn.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
-
-    // 关闭模态框
-    modal.querySelector('.close-btn').addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    // 提交表单 (模拟)
-    modal.querySelector('#addLinkForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const newLink = Object.fromEntries(formData.entries());
-
-        // 这里只是模拟添加到 linksData, 实际上需要发送到后端
-        console.log('New link:', newLink);
-
-        // 关闭模态框
-        modal.style.display = 'none';
-
-        // 清空表单
-        event.target.reset();
-    });
+    // 示例: 添加一个链接
+    // addLink("常用网站", "Example", "https://www.example.com");
 
     loadTheme();
     loadLinks();

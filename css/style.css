@@ -170,28 +170,25 @@ header {
     }
 }
 
-/* 添加链接按钮 */
-.add-link-btn {
+/* 添加链接按钮样式 */
+#addLinkBtn {
     padding: 10px 15px;
-    background-color: #28a745;
+    background-color: #28a745; /* 绿色 */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 20px; /* 与顶部分割线保持距离 */
-    display: block; /* 块级元素 */
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto; /* 靠右对齐 */
 }
 
-.add-link-btn:hover {
+#addLinkBtn:hover {
     background-color: #218838;
 }
 
-/* 模态框 */
+/* 模态框样式 */
 .modal {
-    display: none;
+    display: none; /* 默认隐藏 */
     position: fixed;
     z-index: 1;
     left: 0;
@@ -199,7 +196,7 @@ header {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
 }
 
 .modal-content {
@@ -219,7 +216,7 @@ header {
     border-color: #555;
 }
 
-.close-btn {
+.close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -227,55 +224,52 @@ header {
     cursor: pointer;
 }
 
-.close-btn:hover,
-.close-btn:focus {
+.close-button:hover,
+.close-button:focus {
     color: black;
     text-decoration: none;
 }
 
-.dark-mode .close-btn {
-    color: #888;
-}
-
-.dark-mode .close-btn:hover,
-.dark-mode .close-btn:focus {
-    color: #f0f0f0;
+.dark-mode .close-button:hover,
+.dark-mode .close-button:focus {
+    color: white;
 }
 
 /* 表单样式 */
 #addLinkForm label {
     display: block;
-    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 #addLinkForm input[type="text"],
-#addLinkForm input[type="url"] {
+#addLinkForm input[type="url"],
+#addLinkForm select {
     width: 100%;
     padding: 8px;
-    margin-top: 5px;
+    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* 重要: 避免宽度超出 */
 }
 
 .dark-mode #addLinkForm input[type="text"],
-.dark-mode #addLinkForm input[type="url"] {
+.dark-mode #addLinkForm input[type="url"],
+.dark-mode #addLinkForm select {
     border-color: #555;
     background-color: #444;
     color: #f0f0f0;
 }
 
 #addLinkForm button[type="submit"] {
-    padding: 10px 15px;
     background-color: #007bff;
     color: white;
+    padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 15px;
 }
 
-.dark-mode #addLinkForm button[type="submit"] {
+#addLinkForm button[type="submit"]:hover {
     background-color: #0056b3;
 } 
