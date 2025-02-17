@@ -168,4 +168,30 @@ header {
         margin-right: 0;
         margin-bottom: 10px;
     }
+}
+
+/* 导出按钮样式 */
+.export-button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 10px; /* 与搜索框保持一定距离 */
+}
+
+.dark-mode .export-button {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+.export-button:hover {
+    background-color: #e0e0e0;
+}
+
+.dark-mode .export-button:hover {
+    background-color: #444;
 } 
