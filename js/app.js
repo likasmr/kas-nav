@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
-    const exportBtn = document.getElementById('exportBtn');
+    const exportDataBtn = document.getElementById('exportData');
 
     // 设置初始图标
     function setIcon() {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.appendChild(icon);
     }
 
-    // 从 localStorage 加载主题
+    // 从 localStorage 加载主题, 如果没有, 则检测系统主题
     function loadTheme() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -78,35 +78,29 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryDiv.appendChild(linksGrid);
             contentDiv.appendChild(categoryDiv);
         });
+
+        return linksData;
     }
 
-    exportBtn.addEventListener('click', exportData);
+    // 导出数据为 JSON 文件
+    function exportData() {
+        const linksData = loadLinks();
+        const jsonData = JSON.stringify(linksData, null, 2);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'links-data.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    exportDataBtn.addEventListener('click', exportData);
 
     loadTheme();
-    loadLinks();
+    const initialLinksData = loadLinks();
+    loadLinks(initialLinksData);
     setIcon(); // 页面加载时设置初始图标
-
-    // 每小时备份一次数据
-    setInterval(backupToGithub, 60 * 60 * 1000);
-
-    // 保存布局偏好
-    function saveLayoutPreference(layout) {
-        localStorage.setItem('layoutPreference', layout);
-    }
-
-    // 加载布局偏好
-    function loadLayoutPreference() {
-        return localStorage.getItem('layoutPreference');
-    }
-
-    // 应用布局偏好
-    function applyLayoutPreference() {
-        const layout = loadLayoutPreference();
-        if (layout) {
-            document.body.classList.add(layout);
-        }
-    }
-
-    // 在页面加载时应用布局偏好
-    applyLayoutPreference();
 }); 
