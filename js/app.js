@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
-    const exportBtn = document.getElementById('exportBtn'); // 获取导出按钮
     const contentDiv = document.getElementById('content');
+    const exportBtn = document.getElementById('exportBtn');
 
     // 设置初始图标
     function setIcon() {
@@ -12,67 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.appendChild(icon);
     }
 
-    // 从 localStorage 加载主题, 如果没有, 则检测系统主题
+    // 从 localStorage 加载主题
     function loadTheme() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.body.classList.add(savedTheme);
-        } else {
-            // 检查系统是否为深色模式
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.classList.add('dark-mode');
-            }
         }
     }
 
     // 切换主题
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
+        // 可以在这里保存用户的主题偏好到 localStorage
+
         // 更新图标
         setIcon();
         // 保存主题到 localStorage
         const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : '';
         localStorage.setItem('theme', currentTheme);
     });
-
-    // 导出数据功能
-    exportBtn.addEventListener('click', () => {
-        const linksData = getLinksData();
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(linksData, null, 2));
-        const downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "links_data.json");
-        document.body.appendChild(downloadAnchorNode); // 需要添加到DOM才能触发点击
-        downloadAnchorNode.click();
-        downloadAnchorNode.remove();
-    });
-
-    // 获取当前链接数据
-    function getLinksData() {
-        const categories = document.querySelectorAll('.category');
-        const data = [];
-
-        categories.forEach(category => {
-            const categoryTitle = category.querySelector('.category-title').textContent;
-            const links = [];
-            const linkItems = category.querySelectorAll('.link-item');
-
-            linkItems.forEach(link => {
-                links.push({
-                    name: link.textContent,
-                    url: link.href,
-                    icon: link.querySelector('img') ? link.querySelector('img').src : ""
-                });
-            });
-
-            data.push({
-                category: categoryTitle,
-                links: links
-            });
-        });
-
-        return data;
-    }
 
     // 模拟从 JSON 加载数据
     function loadLinks() {
@@ -122,7 +80,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    exportBtn.addEventListener('click', exportData);
+
     loadTheme();
     loadLinks();
     setIcon(); // 页面加载时设置初始图标
+
+    // 每小时备份一次数据
+    setInterval(backupToGithub, 60 * 60 * 1000);
+
+    // 保存布局偏好
+    function saveLayoutPreference(layout) {
+        localStorage.setItem('layoutPreference', layout);
+    }
+
+    // 加载布局偏好
+    function loadLayoutPreference() {
+        return localStorage.getItem('layoutPreference');
+    }
+
+    // 应用布局偏好
+    function applyLayoutPreference() {
+        const layout = loadLayoutPreference();
+        if (layout) {
+            document.body.classList.add(layout);
+        }
+    }
+
+    // 在页面加载时应用布局偏好
+    applyLayoutPreference();
 }); 
