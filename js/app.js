@@ -1,7 +1,8 @@
+import dataManager from './data-manager.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
-    const exportButton = document.createElement('button'); // 创建导出按钮
 
     // 设置初始图标
     function setIcon() {
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.appendChild(icon);
     }
 
-    // 从 localStorage 加载主题, 如果没有, 则检测系统主题
+    // 从 localStorage 加载主题
     function loadTheme() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -32,74 +33,95 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', currentTheme);
     });
 
-    // 加载链接数据
+    // 模拟从 JSON 加载数据
     function loadLinks() {
-        fetch('data/links.json') // 使用 fetch API 获取 JSON 文件
-            .then(response => response.json())
-            .then(linksData => {
-                linksData.forEach(categoryData => {
-                    const categoryDiv = document.createElement('div');
-                    categoryDiv.classList.add('category');
+        const linksData = [
+            {
+                category: "常用网站",
+                links: [
+                    { name: "Google", url: "https://www.google.com", icon: "" },
+                    { name: "GitHub", url: "https://github.com", icon: "" },
+                    // 更多链接...
+                ]
+            },
+            {
+                category: "学习资源",
+                links: [
+                    { name: "MDN Web Docs", url: "https://developer.mozilla.org", icon: "" },
+                    { name: "Stack Overflow", url: "https://stackoverflow.com", icon: "" },
+                    // 更多链接...
+                ]
+            }
+            // 更多分类...
+        ];
 
-                    const title = document.createElement('h2');
-                    title.classList.add('category-title');
-                    title.textContent = categoryData.category;
-                    categoryDiv.appendChild(title);
+        linksData.forEach(categoryData => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.classList.add('category');
 
-                    const linksGrid = document.createElement('div');
-                    linksGrid.classList.add('links-grid');
+            const title = document.createElement('h2');
+            title.classList.add('category-title');
+            title.textContent = categoryData.category;
+            categoryDiv.appendChild(title);
 
-                    categoryData.links.forEach(link => {
-                        const linkItem = document.createElement('a');
-                        linkItem.classList.add('link-item');
-                        linkItem.href = link.url;
-                        linkItem.textContent = link.name;
-                        // 如果有图标，可以在这里添加 <img> 标签
-                        linksGrid.appendChild(linkItem);
-                    });
+            const linksGrid = document.createElement('div');
+            linksGrid.classList.add('links-grid');
 
-                    categoryDiv.appendChild(linksGrid);
-                    contentDiv.appendChild(categoryDiv);
-                });
-            })
-            .catch(error => {
-                console.error('加载链接数据失败:', error);
-                contentDiv.innerHTML = '<p>加载链接数据失败，请检查 data/links.json 文件。</p>';
+            categoryData.links.forEach(link => {
+                const linkItem = document.createElement('a');
+                linkItem.classList.add('link-item');
+                linkItem.href = link.url;
+                linkItem.textContent = link.name;
+                // 如果有图标，可以在这里添加 <img> 标签
+                linksGrid.appendChild(linkItem);
             });
+
+            categoryDiv.appendChild(linksGrid);
+            contentDiv.appendChild(categoryDiv);
+        });
     }
 
-    // 导出 JSON 数据
-    function exportLinks() {
-        fetch('data/links.json')
-            .then(response => response.json())
-            .then(data => {
-                const jsonString = JSON.stringify(data, null, 2); // 格式化 JSON 字符串
-                const blob = new Blob([jsonString], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const downloadLink = document.createElement('a');
-                downloadLink.href = url;
-                downloadLink.download = 'links.json'; // 下载的文件名
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-                URL.revokeObjectURL(url); // 释放 URL 对象
-            })
-            .catch(error => {
-                console.error('导出 JSON 数据失败:', error);
-                alert('导出 JSON 数据失败，请重试。');
-            });
-    }
+    // 添加数据管理相关的事件监听
+    const exportBtn = document.getElementById('exportBtn');
+    const importFile = document.getElementById('importFile');
 
-    // 初始化导出按钮
-    function initExportButton() {
-        exportButton.textContent = '导出数据';
-        exportButton.classList.add('export-button'); // 添加 CSS 类
-        exportButton.addEventListener('click', exportLinks);
-        document.querySelector('header').appendChild(exportButton); // 将按钮添加到 header
+    exportBtn.addEventListener('click', () => {
+        dataManager.exportData();
+        showToast('数据导出成功');
+    });
+
+    importFile.addEventListener('change', async (e) => {
+        if (e.target.files.length > 0) {
+            const success = await dataManager.importData(e.target.files[0]);
+            if (success) {
+                showToast('数据导入成功');
+                location.reload(); // 刷新页面以显示新数据
+            } else {
+                showToast('数据导入失败', 'error');
+            }
+        }
+    });
+
+    // 添加提示toast
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 10);
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
     }
 
     loadTheme();
     loadLinks();
-    setIcon();
-    initExportButton(); // 初始化导出按钮
+    setIcon(); // 页面加载时设置初始图标
 }); 

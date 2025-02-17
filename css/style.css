@@ -170,28 +170,63 @@ header {
     }
 }
 
-/* 导出按钮样式 */
-.export-button {
-    padding: 10px 15px;
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+/* 数据管理面板样式 */
+.data-panel {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.data-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    margin-left: 10px; /* 与搜索框或主题切换按钮保持间距 */
+    transition: all 0.3s ease;
 }
 
-.dark-mode .export-button {
-    background-color: #333;
-    color: #f0f0f0;
-    border-color: #555;
+.dark-mode .data-btn {
+    background: rgba(0, 0, 0, 0.2);
 }
 
-.export-button:hover {
-    background-color: #e0e0e0;
+.data-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
 }
 
-.dark-mode .export-button:hover {
-    background-color: #444;
+.dark-mode .data-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.data-btn i {
+    font-size: 1.1em;
+}
+
+/* 添加导入/导出操作的反馈提示 */
+.toast {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
 } 
