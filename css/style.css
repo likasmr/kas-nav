@@ -170,106 +170,165 @@ header {
     }
 }
 
-/* 添加链接按钮样式 */
-#addLinkBtn {
-    padding: 10px 15px;
-    background-color: #28a745; /* 绿色 */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: auto; /* 靠右对齐 */
-}
-
-#addLinkBtn:hover {
-    background-color: #218838;
-}
-
-/* 模态框样式 */
-.modal {
-    display: none; /* 默认隐藏 */
+/* 设置面板按钮 */
+.settings-panel {
     position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+    bottom: 20px;
+    right: 80px; /* 与主题切换按钮保持距离 */
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .modal-content {
-    background-color: #333;
-    color: #f0f0f0;
-    border-color: #555;
-}
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.settings-toggle {
+    padding: 10px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
+.dark-mode .settings-toggle {
+    color: #f0f0f0;
 }
 
-.dark-mode .close-button:hover,
-.dark-mode .close-button:focus {
-    color: white;
+.settings-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
 }
 
-/* 表单样式 */
-#addLinkForm label {
-    display: block;
-    margin-bottom: 5px;
+.dark-mode .settings-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-#addLinkForm input[type="text"],
-#addLinkForm input[type="url"],
-#addLinkForm select {
+/* 设置抽屉 */
+.settings-drawer {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.dark-mode .settings-drawer {
+    background-color: #1e1e1e;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.settings-drawer.open {
+    right: 0;
+}
+
+.drawer-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode .drawer-header {
+    border-bottom-color: #333;
+}
+
+.drawer-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.dark-mode .drawer-header h3 {
+    color: #f0f0f0;
+}
+
+.close-drawer {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.dark-mode .close-drawer {
+    color: #999;
+}
+
+.drawer-content {
+    padding: 20px;
+}
+
+.settings-section {
+    margin-bottom: 30px;
+}
+
+.settings-section h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.dark-mode .settings-section h4 {
+    color: #f0f0f0;
+}
+
+.settings-btn {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f5f5f5;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box; /* 重要: 避免宽度超出 */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.dark-mode #addLinkForm input[type="text"],
-.dark-mode #addLinkForm input[type="url"],
-.dark-mode #addLinkForm select {
-    border-color: #555;
-    background-color: #444;
+.dark-mode .settings-btn {
+    background-color: #333;
+    border-color: #444;
     color: #f0f0f0;
 }
 
-#addLinkForm button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.settings-btn:hover {
+    background-color: #eee;
 }
 
-#addLinkForm button[type="submit"]:hover {
-    background-color: #0056b3;
+.dark-mode .settings-btn:hover {
+    background-color: #444;
+}
+
+.setting-item {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting-item label {
+    color: #666;
+}
+
+.dark-mode .setting-item label {
+    color: #999;
+}
+
+.setting-item select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.dark-mode .setting-item select {
+    background-color: #333;
+    border-color: #444;
+    color: #f0f0f0;
 } 

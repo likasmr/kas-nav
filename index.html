@@ -14,41 +14,70 @@
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="搜索...">
             </div>
-            <div class="theme-switch">
-                <button id="themeToggle">切换模式</button>
-            </div>
-            <!-- 添加链接按钮 -->
-            <button id="addLinkBtn">添加链接</button>
         </header>
         <main id="content">
             <!-- 链接分类将在这里动态加载 -->
         </main>
-    </div>
+        
+        <!-- 添加设置面板按钮 -->
+        <div class="settings-panel">
+            <button id="settingsBtn" class="settings-toggle">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
 
-    <!-- 添加链接的模态框 -->
-    <div id="addLinkModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>添加链接</h2>
-            <form id="addLinkForm">
-                <label for="categorySelect">选择分类:</label>
-                <select id="categorySelect">
-                    <!-- 分类选项将在这里动态加载 -->
-                </select>
+        <!-- 主题切换按钮 -->
+        <div class="theme-switch">
+            <button id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
 
-                <label for="linkName">链接名称:</label>
-                <input type="text" id="linkName" required>
-
-                <label for="linkUrl">链接 URL:</label>
-                <input type="url" id="linkUrl" required>
-
-                <button type="submit">添加</button>
-            </form>
+        <!-- 设置抽屉 -->
+        <div class="settings-drawer" id="settingsDrawer">
+            <div class="drawer-header">
+                <h3>设置</h3>
+                <button class="close-drawer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="drawer-content">
+                <div class="settings-section">
+                    <h4>数据管理</h4>
+                    <button onclick="exportData()" class="settings-btn">
+                        <i class="fas fa-download"></i> 导出数据
+                    </button>
+                    <div class="file-upload">
+                        <input type="file" id="importFile" accept=".json" style="display: none">
+                        <button onclick="document.getElementById('importFile').click()" class="settings-btn">
+                            <i class="fas fa-upload"></i> 导入数据
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>显示设置</h4>
+                    <div class="setting-item">
+                        <label>布局方式</label>
+                        <select id="layoutSelect">
+                            <option value="grid">网格</option>
+                            <option value="list">列表</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label>网格大小</label>
+                        <select id="gridSizeSelect">
+                            <option value="small">小</option>
+                            <option value="medium">中</option>
+                            <option value="large">大</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    
     <script src="js/app.js"></script>
     <script src="js/search.js"></script>
-    <script src="js/modal.js"></script>
+    <script src="js/settings.js"></script>
 </body>
 </html> 
