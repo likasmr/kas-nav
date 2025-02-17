@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
-    const exportDataBtn = document.getElementById('exportDataBtn'); // 获取导出按钮
 
     // 设置初始图标
     function setIcon() {
@@ -32,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', currentTheme);
     });
 
-    // 从 JSON 文件加载数据
+    // 从 JSON 文件加载链接数据
     function loadLinks() {
-        fetch('data/links.json') // 使用 fetch 加载 JSON 文件
+        fetch('data/links.json')
             .then(response => response.json())
             .then(linksData => {
                 linksData.forEach(categoryData => {
@@ -67,28 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 contentDiv.innerHTML = '<p>加载链接数据失败，请检查 data/links.json 文件。</p>';
             });
     }
-
-    // 导出数据功能
-    exportDataBtn.addEventListener('click', () => {
-        fetch('data/links.json') // 重新获取 JSON 数据
-            .then(response => response.json())
-            .then(data => {
-                const jsonData = JSON.stringify(data, null, 2); // 格式化 JSON 数据
-                const blob = new Blob([jsonData], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'links-data.json'; // 下载的文件名
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url); // 释放 URL
-            })
-            .catch(error => {
-                console.error('导出数据失败:', error);
-                alert('导出数据失败，请重试。');
-            });
-    });
 
     loadTheme();
     loadLinks();
