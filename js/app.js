@@ -17,11 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.body.classList.add(savedTheme);
-        } else {
-            // 检查系统是否为深色模式
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.classList.add('dark-mode');
-            }
         }
     }
 
@@ -39,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 加载链接数据
     function loadLinks() {
-        fetch('data/links.json') // 使用 fetch 加载 JSON 文件
+        fetch('data/links.json') // 使用 fetch API 获取 JSON 文件
             .then(response => response.json())
             .then(linksData => {
                 linksData.forEach(categoryData => {
@@ -69,39 +64,42 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('加载链接数据失败:', error);
-                // 可以添加错误处理逻辑，例如显示错误信息
+                contentDiv.innerHTML = '<p>加载链接数据失败，请检查 data/links.json 文件。</p>';
             });
     }
 
-    // 添加导出按钮到 header
-    const header = document.querySelector('header');
-
-    exportButton.textContent = '导出数据';
-    exportButton.classList.add('export-button'); // 添加 class 方便样式控制
-    header.appendChild(exportButton);
-
-    // 导出数据功能
-    exportButton.addEventListener('click', () => {
-        fetch('data/links.json') // 重新获取数据，确保导出最新数据
+    // 导出 JSON 数据
+    function exportLinks() {
+        fetch('data/links.json')
             .then(response => response.json())
             .then(data => {
-                const jsonData = JSON.stringify(data, null, 2); // 格式化 JSON
-                const blob = new Blob([jsonData], { type: 'application/json' });
+                const jsonString = JSON.stringify(data, null, 2); // 格式化 JSON 字符串
+                const blob = new Blob([jsonString], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'links.json'; // 下载的文件名
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url); // 释放 URL
+                const downloadLink = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = 'links.json'; // 下载的文件名
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                URL.revokeObjectURL(url); // 释放 URL 对象
             })
             .catch(error => {
-                console.error('导出数据失败:', error);
+                console.error('导出 JSON 数据失败:', error);
+                alert('导出 JSON 数据失败，请重试。');
             });
-    });
+    }
+
+    // 初始化导出按钮
+    function initExportButton() {
+        exportButton.textContent = '导出数据';
+        exportButton.classList.add('export-button'); // 添加 CSS 类
+        exportButton.addEventListener('click', exportLinks);
+        document.querySelector('header').appendChild(exportButton); // 将按钮添加到 header
+    }
 
     loadTheme();
     loadLinks();
-    setIcon(); // 页面加载时设置初始图标
+    setIcon();
+    initExportButton(); // 初始化导出按钮
 }); 

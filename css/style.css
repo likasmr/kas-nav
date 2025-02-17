@@ -179,7 +179,7 @@ header {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    margin-left: 10px; /* 与搜索框保持一定距离 */
+    margin-left: 10px; /* 与搜索框或主题切换按钮保持间距 */
 }
 
 .dark-mode .export-button {
