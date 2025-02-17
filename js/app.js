@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const contentDiv = document.getElementById('content');
-    const exportDataBtn = document.getElementById('exportData');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+    const exportDataBtn = document.getElementById('exportDataBtn');
 
     // 设置初始图标
     function setIcon() {
@@ -17,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.body.classList.add(savedTheme);
+        } else {
+            // 检查系统是否为深色模式
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+            }
         }
     }
 
@@ -30,6 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // 保存主题到 localStorage
         const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : '';
         localStorage.setItem('theme', currentTheme);
+    });
+
+    // 切换设置面板显示
+    settingsBtn.addEventListener('click', () => {
+        settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // 导出数据功能
+    exportDataBtn.addEventListener('click', () => {
+        exportLinkData();
     });
 
     // 模拟从 JSON 加载数据
@@ -54,6 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // 更多分类...
         ];
 
+        loadLinkCategories(linksData);
+    }
+
+    function loadLinkCategories(linksData) {
         linksData.forEach(categoryData => {
             const categoryDiv = document.createElement('div');
             categoryDiv.classList.add('category');
@@ -78,29 +99,49 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryDiv.appendChild(linksGrid);
             contentDiv.appendChild(categoryDiv);
         });
-
-        return linksData;
     }
 
-    // 导出数据为 JSON 文件
-    function exportData() {
-        const linksData = loadLinks();
-        const jsonData = JSON.stringify(linksData, null, 2);
+    // 导出链接数据为 JSON 文件
+    function exportLinkData() {
+        const linksData = getLinkData(); // 获取链接数据
+        const jsonData = JSON.stringify(linksData, null, 2); // 格式化 JSON
+
         const blob = new Blob([jsonData], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'links-data.json';
+        a.download = 'links-data.json'; // 下载的文件名
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+        settingsPanel.style.display = 'none'; // 导出后关闭设置面板
     }
 
-    exportDataBtn.addEventListener('click', exportData);
+    //  获取链接数据 (目前返回示例数据，之后需要修改为从实际数据源获取)
+    function getLinkData() {
+        return [
+            {
+                category: "常用网站",
+                links: [
+                    { name: "Google", url: "https://www.google.com", icon: "" },
+                    { name: "GitHub", url: "https://github.com", icon: "" },
+                    // 更多链接...
+                ]
+            },
+            {
+                category: "学习资源",
+                links: [
+                    { name: "MDN Web Docs", url: "https://developer.mozilla.org", icon: "" },
+                    { name: "Stack Overflow", url: "https://stackoverflow.com", icon: "" },
+                    // 更多链接...
+                ]
+            }
+            // 更多分类...
+        ];
+    }
 
     loadTheme();
-    const initialLinksData = loadLinks();
-    loadLinks(initialLinksData);
+    loadLinks();
     setIcon(); // 页面加载时设置初始图标
 }); 
