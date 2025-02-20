@@ -24,14 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 切换主题
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
-        // 可以在这里保存用户的主题偏好到 localStorage
-
-        // 更新图标
-        setIcon();
-        // 保存主题到 localStorage
         const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : '';
         localStorage.setItem('theme', currentTheme);
+        updateThemeIcon();
     });
+
+    function updateThemeIcon() {
+        const themeIcon = themeToggle.querySelector('i');
+        themeIcon.classList.remove('fa-sun', 'fa-moon');
+        themeIcon.classList.add(document.body.classList.contains('dark-mode') ? 'fa-sun' : 'fa-moon');
+    }
 
     // 模拟从 JSON 加载数据
     function loadLinks() {
@@ -121,30 +123,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // 添加设置面板切换功能
+    // 设置面板控制
     const settingsToggle = document.getElementById('settingsToggle');
-    const settingsBtnGroup = document.querySelector('.settings-btn-group');
-    
-    settingsToggle.addEventListener('click', () => {
-        settingsBtnGroup.classList.toggle('show');
-        // 添加旋转动画
-        const icon = settingsToggle.querySelector('i');
-        icon.style.transform = settingsBtnGroup.classList.contains('show') 
-            ? 'rotate(180deg)' 
-            : 'rotate(0deg)';
-        icon.style.transition = 'transform 0.3s ease';
+    const settingsMenu = document.querySelector('.settings-menu');
+
+    settingsToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        settingsMenu.classList.toggle('show');
     });
 
     // 点击其他地方关闭设置面板
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.settings-panel')) {
-            settingsBtnGroup.classList.remove('show');
-            const icon = settingsToggle.querySelector('i');
-            icon.style.transform = 'rotate(0deg)';
+        if (!settingsMenu.contains(e.target) && !settingsToggle.contains(e.target)) {
+            settingsMenu.classList.remove('show');
         }
     });
 
+    // 初始化
     loadTheme();
     loadLinks();
-    setIcon(); // 页面加载时设置初始图标
+    updateThemeIcon();
 }); 
