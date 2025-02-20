@@ -121,6 +121,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
+    // 添加设置面板切换功能
+    const settingsToggle = document.getElementById('settingsToggle');
+    const settingsBtnGroup = document.querySelector('.settings-btn-group');
+    
+    settingsToggle.addEventListener('click', () => {
+        settingsBtnGroup.classList.toggle('show');
+        // 添加旋转动画
+        const icon = settingsToggle.querySelector('i');
+        icon.style.transform = settingsBtnGroup.classList.contains('show') 
+            ? 'rotate(180deg)' 
+            : 'rotate(0deg)';
+        icon.style.transition = 'transform 0.3s ease';
+    });
+
+    // 点击其他地方关闭设置面板
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.settings-panel')) {
+            settingsBtnGroup.classList.remove('show');
+            const icon = settingsToggle.querySelector('i');
+            icon.style.transform = 'rotate(0deg)';
+        }
+    });
+
     loadTheme();
     loadLinks();
     setIcon(); // 页面加载时设置初始图标
