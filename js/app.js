@@ -24,16 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 切换主题
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
+        // 可以在这里保存用户的主题偏好到 localStorage
+
+        // 更新图标
+        setIcon();
+        // 保存主题到 localStorage
         const currentTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : '';
         localStorage.setItem('theme', currentTheme);
-        updateThemeIcon();
     });
-
-    function updateThemeIcon() {
-        const themeIcon = themeToggle.querySelector('i');
-        themeIcon.classList.remove('fa-sun', 'fa-moon');
-        themeIcon.classList.add(document.body.classList.contains('dark-mode') ? 'fa-sun' : 'fa-moon');
-    }
 
     // 模拟从 JSON 加载数据
     function loadLinks() {
@@ -123,24 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // 设置面板控制
-    const settingsToggle = document.getElementById('settingsToggle');
-    const settingsMenu = document.querySelector('.settings-menu');
-
-    settingsToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        settingsMenu.classList.toggle('show');
-    });
-
-    // 点击其他地方关闭设置面板
-    document.addEventListener('click', (e) => {
-        if (!settingsMenu.contains(e.target) && !settingsToggle.contains(e.target)) {
-            settingsMenu.classList.remove('show');
-        }
-    });
-
-    // 初始化
     loadTheme();
     loadLinks();
-    updateThemeIcon();
+    setIcon(); // 页面加载时设置初始图标
 }); 
