@@ -170,84 +170,113 @@ header {
     }
 }
 
-/* 数据管理面板样式 */
-.data-panel {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
+/* 头部操作区域 */
+.header-actions {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 1000;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px;
 }
 
-.data-btn {
+/* 数据管理面板 */
+.data-panel {
+    display: flex;
+    gap: 8px;
+}
+
+/* 图标按钮样式 */
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #666;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    overflow: hidden;
 }
 
-.dark-mode .data-btn {
-    background: rgba(30, 30, 30, 0.9);
-}
-
-.data-btn:hover {
-    width: 120px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .data-btn:hover {
-    background: rgba(50, 50, 50, 0.95);
-}
-
-.data-btn i {
-    font-size: 1.2em;
+.icon-btn::after {
+    content: '';
     position: absolute;
-    left: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
     transition: opacity 0.3s;
 }
 
-.data-btn span {
-    opacity: 0;
-    white-space: nowrap;
-    transform: translateX(-10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: #007bff;
 }
 
-.data-btn:hover span {
+.icon-btn:hover::after {
     opacity: 1;
-    transform: translateX(10px);
-    margin-left: 20px;
 }
 
-.data-btn:hover i {
-    opacity: 0;
+.icon-btn i {
+    font-size: 16px;
+    transition: transform 0.3s;
 }
 
-/* 导入按钮特殊样式 */
-.data-btn[for="importFile"] {
-    transition-delay: 0.1s;
+.icon-btn:hover i {
+    transform: scale(1.1);
 }
 
-/* 悬停时显示完整按钮 */
-.data-panel:hover .data-btn {
-    width: 40px;
+/* 暗色模式适配 */
+.dark-mode .icon-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #888;
 }
 
-.data-panel:hover .data-btn:hover {
-    width: 120px;
+.dark-mode .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #4da6ff;
+}
+
+/* 文件输入隐藏 */
+#importFile {
+    display: none;
+}
+
+/* 添加工具提示 */
+[title] {
+    position: relative;
+}
+
+[title]:hover::before {
+    content: attr(title);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.dark-mode [title]:hover::before {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 5px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* 添加导入/导出操作的反馈提示 */
