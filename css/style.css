@@ -229,4 +229,108 @@ header {
 .toast.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* 管理菜单样式 */
+.management-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.menu-trigger {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-mode .menu-trigger {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.menu-trigger:hover {
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.menu-trigger i {
+    color: #007bff;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.dark-mode .menu-trigger i {
+    color: #4da6ff;
+}
+
+/* 菜单项 */
+.menu-items {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    min-width: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.management-menu:hover .menu-items {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dark-mode .menu-items {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.dark-mode .menu-item {
+    color: #f0f0f0;
+}
+
+.menu-item:hover {
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.menu-item i {
+    width: 24px;
+    margin-right: 12px;
+    font-size: 0.9em;
+    color: #007bff;
+}
+
+.dark-mode .menu-item i {
+    color: #4da6ff;
+}
+
+.menu-text {
+    font-size: 0.95em;
+    font-weight: 500;
 } 
