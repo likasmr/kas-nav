@@ -16,25 +16,18 @@
             </div>
         </header>
         
-        <!-- 在 container 内顶部添加管理菜单 -->
-        <div class="management-menu">
-            <div class="menu-trigger">
-                <i class="fas fa-cog"></i>
-            </div>
-            <div class="menu-items">
-                <button class="menu-item" id="exportBtn">
-                    <i class="fas fa-file-export"></i>
-                    <span class="menu-text">导出配置</span>
-                </button>
-                <label class="menu-item" for="importFile">
-                    <i class="fas fa-file-import"></i>
-                    <span class="menu-text">导入配置</span>
-                </label>
-            </div>
+        <!-- 修改数据管理面板 -->
+        <div class="data-panel">
+            <button id="exportBtn" class="data-btn" aria-label="导出数据">
+                <i class="fas fa-download"></i>
+                <span>导出数据</span>
+            </button>
+            <label for="importFile" class="data-btn" aria-label="导入数据">
+                <i class="fas fa-upload"></i>
+                <span>导入数据</span>
+            </label>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
         </div>
-
-        <!-- 修改原有数据面板为隐藏文件输入 -->
-        <input type="file" id="importFile" accept=".json" hidden>
 
         <main id="content">
             <!-- 链接分类将在这里动态加载 -->
