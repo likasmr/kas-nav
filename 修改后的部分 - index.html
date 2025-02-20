@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- ... 原有的 head 内容 ... -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索...">
+            </div>
+            <!-- 添加设置按钮 -->
+            <div class="settings">
+                <button id="settingsBtn" class="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+        
+        <main id="content">
+            <!-- 链接分类将在这里动态加载 -->
+        </main>
+    </div>
+
+    <div class="theme-switch">
+        <button id="themeToggle">切换模式</button>
+    </div>
+
+    <!-- 设置模态窗口 -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>数据管理</h2>
+            <button id="exportBtn" class="modal-btn">
+                <i class="fas fa-download"></i>
+                <span>导出数据</span>
+            </button>
+            <label for="importFile" class="modal-btn">
+                <i class="fas fa-upload"></i>
+                <span>导入数据</span>
+            </label>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script type="module" src="js/app.js"></script>
+    <script src="js/search.js"></script>
+    <script type="module" src="js/data-manager.js"></script>
+</body>
+</html> 
